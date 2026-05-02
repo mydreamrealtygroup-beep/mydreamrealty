@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tulum Real Estate | Playa del Carmen & Cancun Properties</title>
+
+<meta name="description" content="Luxury real estate in Tulum, Playa del Carmen and Cancun. Condos, villas and investment properties in Mexico.">
+<meta name="keywords" content="Tulum real estate, Cancun property, Playa del Carmen condos, Mexico real estate investment">
+<link rel="canonical" href="https://yourdomain.com">
+
+<meta property="og:title" content="My Dream Realty Group">
+<meta property="og:description" content="Find your dream property in Mexico">
+<meta property="og:image" content="your-image.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f7f7f7;
+  color: #222;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: white;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.hero {
+  height: 90vh;
+  background: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  background: #ff4db8;
+  color: white;
+  cursor: pointer;
+}
+
+.section {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+}
+
+.card h3 {
+  padding: 10px;
+}
+
+.contact {
+  background: #222;
+  color: white;
+}
+
+a.whatsapp {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 25px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">MY Dream Realty Group</div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Find Your Dream Property in Mexico</h1>
+    <p>Tulum • Playa del Carmen • Cancún</p>
+    <button onclick="document.getElementById('contact').scrollIntoView()">Contact Us</button>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Featured Locations</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+      <h3>Tulum</h3>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98">
+      <h3>Playa del Carmen</h3>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+      <h3>Cancún</h3>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Available Properties</h2>
+
+  <div style="margin-bottom:30px;">
+    <select id="locationFilter">
+      <option value="">All Locations</option>
+      <option value="Tulum">Tulum</option>
+      <option value="Playa">Playa del Carmen</option>
+      <option value="Cancun">Cancún</option>
+    </select>
+
+    <select id="priceFilter">
+      <option value="">Any Price</option>
+      <option value="100000">Under $100K</option>
+      <option value="300000">Under $300K</option>
+      <option value="500000">Luxury ($500K+)</option>
+    </select>
+  </div>
+
+  <div class="cards" id="propertyList"></div>
+</section>
+
+<section class="section">
+  <h2>About Us</h2>
+  <p>We help international buyers find premium real estate opportunities in Mexico. Trusted, transparent, and client-focused service.</p>
+</section>
+
+<section id="contact" class="section contact">
+  <h2>Contact Us</h2>
+  <p>Email: mydreamrealtygroup@gmail.com</p>
+  <p>Phone / WhatsApp: +52 984 309 1090</p>
+
+  <a class="whatsapp" href="https://wa.me/529843091090" target="_blank">
+    Chat on WhatsApp
+  </a>
+</section>
+
+<script>
+const properties = [
+  {title:"Luxury Condo", location:"Tulum", price:120000, img:"https://images.unsplash.com/photo-1560185893-a55cbc8c57e8"},
+  {title:"Beachfront Villa", location:"Cancun", price:600000, img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"},
+  {title:"Modern Apartment", location:"Playa", price:250000, img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb"}
+];
+
+function displayProperties(list) {
+  const container = document.getElementById("propertyList");
+  container.innerHTML = "";
+  list.forEach(p => {
+    container.innerHTML += `
+      <div class="card">
+        <img src="${p.img}">
+        <h3>${p.title}</h3>
+        <p>${p.location} - $${p.price}</p>
+      </div>
+    `;
+  });
+}
+
+function filterProperties() {
+  const loc = document.getElementById("locationFilter").value;
+  const price = document.getElementById("priceFilter").value;
+
+  const filtered = properties.filter(p => {
+    return (!loc || p.location === loc) &&
+           (!price || p.price <= price || (price == 500000 && p.price >= 500000));
+  });
+
+  displayProperties(filtered);
+}
+
+document.getElementById("locationFilter").addEventListener("change", filterProperties);
+document.getElementById("priceFilter").addEventListener("change", filterProperties);
+
+displayProperties(properties);
+</script>
+
+</body>
+</html>
